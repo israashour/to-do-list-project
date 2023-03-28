@@ -5,12 +5,7 @@
 
     <!-- Input -->
     <div class="d-flex mt-5">
-      <input
-        type="text"
-        v-model="task"
-        placeholder="Enter task"
-        class="w-100 form-control"
-      />
+      <input type="text" v-model="task" placeholder="Enter task" class="w-100 form-control">
       <button class="btn btn-warning rounded-0" @click="submitTask">
         SUBMIT
       </button>
@@ -22,28 +17,24 @@
         <tr>
           <th scope="col">Task</th>
           <th scope="col" style="width: 120px">Status</th>
-          <th scope="col" class="text-center">#</th>
+          <th scope="col" class="text-center">Reminder</th>
           <th scope="col" class="text-center">#</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(task, index) in tasks" :key="index">
           <td>
-            <span :class="{ 'line-through': task.status === 'finished'}  {'deleted-task': task.status === 'deleted'}">
+            <span :class="{ 'line-through': task.status === 'finished' }">
               {{ task.name }}
             </span>
           </td>
           <td>
-            <span
-              class="pointer noselect"
-              @click="changeStatus(index)"
-              :class="{
-                'text-danger': task.status === 'to-do',
-                'text-success': task.status === 'finished',
-                'text-warning': task.status === 'in-progress',
-                'text-warning': task.status === 'deleted',
-              }"
-            >
+            <span class="pointer noselect" @click="changeStatus(index)" :class="{
+              'text-danger': task.status === 'to-do',
+              'text-success': task.status === 'finished',
+              'text-warning': task.status === 'in-progress',
+              'text-warning': task.status === 'deleted',
+            }">
               {{ capitalizeFirstChar(task.status) }}
             </span>
           </td>
@@ -74,7 +65,7 @@ export default {
     return {
       task: "",
       editedTask: null,
-      statuses: ["to-do", "in-progress", "finished","deleted"],
+      statuses: ["to-do", "in-progress", "finished", "deleted"],
 
       /* Status could be: 'to-do' / 'in-progress' / 'finished' */
       tasks: [
@@ -158,20 +149,29 @@ export default {
 .pointer {
   cursor: pointer;
 }
+
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
 .line-through {
   text-decoration: line-through;
   background-color: green;
 }
-.deleted-task{
+
+.deleted-task {
   text-decoration: line-through;
   background-color: red;
 }
